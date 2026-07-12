@@ -1,0 +1,48 @@
+# ── HARD BLOCK: vault + private infrastructure ──────────────
+# Nothing from eMER(Her)GENCE BRAIN enters this repo.
+
+*.md
+!README.md
+
+conversations.json
+*.json
+!package.json
+!sitemap.json
+
+VoiceNotes/
+voicenotes/
+*.m4a
+*.mp3
+*.wav
+
+BRAIN/
+brain/
+vault/
+_private/
+_drafts/
+_archive/
+
+# Registries — private
+AEL-*
+SSI-*
+MML-*
+BOS-*
+MEM-*
+GOV-*
+EMHG-*
+DIE-PRD-*
+
+# Env + secrets
+.env
+.env.*
+*.key
+*.pem
+credentials*
+
+# OS + editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.obsidian/
+.vscode/
+node_modules/
