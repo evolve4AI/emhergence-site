@@ -36,9 +36,16 @@ a{color:var(--accent)}
 blockquote{font-family:Georgia,serif;font-size:1.15rem;border-left:3px solid var(--accent);margin:1.75rem 0;padding:.25rem 0 .25rem 1.25rem;color:var(--ink)}
 .small{font-size:.9rem;color:var(--muted)}
 .quiz{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:1.5rem;margin:1.5rem 0}
-.quiz button{display:block;width:100%;text-align:left;margin:.5rem 0;padding:.85rem 1rem;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:6px;cursor:pointer}
+.quiz-choices{display:grid;grid-template-columns:1fr;gap:.5rem;margin:.5rem 0}
+@media(min-width:34rem){.quiz-choices{grid-template-columns:1fr 1fr}}
+.quiz button{display:block;width:100%;text-align:left;margin:0;padding:.85rem 1rem;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:6px;cursor:pointer}
 .quiz button:hover{border-color:var(--accent)}
-.quiz [data-result]{display:none;margin-top:1rem;padding:1rem;border:1px dashed var(--rule);border-radius:6px}
+.quiz button[aria-pressed="true"]{border-color:var(--accent);border-width:2px;padding:calc(.85rem - 1px) calc(1rem - 1px);font-weight:600}
+.quiz button[aria-pressed="true"]::before{content:"\2713\00A0";color:var(--accent)}
+.quiz button[aria-disabled="true"]{border-color:var(--rule);opacity:.55;cursor:not-allowed}
+.quiz-status{min-height:1.5rem;margin:.75rem 0 0;font-size:.9rem;color:var(--muted)}
+.quiz [data-result]{margin-top:1rem;padding:1rem;border:1px dashed var(--rule);border-radius:6px}
+.quiz [data-result]:focus{outline:2px solid var(--accent);outline-offset:2px}
 .placeholder{color:var(--muted);font-style:italic}
 footer{margin:4rem auto 0;padding-top:1.5rem;padding-bottom:2.5rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
 </style>
@@ -65,48 +72,144 @@ footer{margin:4rem auto 0;padding-top:1.5rem;padding-bottom:2.5rem;border-top:1p
 
 <!-- <h2>Find your place in this</h2> DISABLED PENDING D1 -->
 <!--
-  PERSONA QUIZ SHELL — decision D1 pending (the three persona names).
-  Everything marked [PLACEHOLDER — D1] below is stub copy and must be
+  PERSONA QUIZ SHELL — decisions D1 and D5 pending.
+  Six modes, not three. Multi select, with a hard cap of three.
+  No sorting, no ranking, no single winner: panels render in document
+  order, so the order they were chosen in never implies hierarchy.
+  At the cap, unselected buttons are aria-disabled and a click on one
+  announces the cap message instead of selecting.
+  D1 supplies the question, six choice labels, six mode names, six
+  descriptive copy blocks, and the cap message.
+  D5 supplies the six next-step lines.
+  Everything marked [PLACEHOLDER] below is stub copy and must be
   replaced by the founder before this page is considered final.
-  Decision D5 (per-persona next step) is also pending; result panels
-  carry stub next-step lines.
-  This quiz is anonymous and entirely client-side: no storage, no
-  cookies, no network requests, nothing recorded.
+  Quiz mechanics are anonymous and entirely client-side: no storage, no
+  cookies, no network requests, nothing recorded. The D5 next-step links
+  are ordinary navigation and sit outside that guarantee.
 -->
 <!-- PERSONA QUIZ DISABLED PENDING D1
 <div class="quiz" id="persona-quiz">
-<p class="small">Three doors, one question. Anonymous — nothing you choose here is recorded or sent anywhere.</p>
-<p><strong><span class="placeholder">[PLACEHOLDER — D1: the quiz question goes here]</span></strong></p>
-<button type="button" data-choice="a"><span class="placeholder">[PLACEHOLDER — D1: persona one choice copy]</span></button>
-<button type="button" data-choice="b"><span class="placeholder">[PLACEHOLDER — D1: persona two choice copy]</span></button>
-<button type="button" data-choice="c"><span class="placeholder">[PLACEHOLDER — D1: persona three choice copy]</span></button>
-<div data-result="a">
-<p><strong class="placeholder">[PLACEHOLDER — D1: persona one name]</strong></p>
-<p class="placeholder">[PLACEHOLDER — D1/D5: persona one result copy and defined next step]</p>
+<p class="small"><span class="placeholder">[PLACEHOLDER — D1: intro line]</span> Anonymous — nothing you choose here is recorded or sent anywhere.</p>
+<p><strong><span class="placeholder">[PLACEHOLDER — D1: the quiz question goes here, phrased for choosing up to three]</span></strong></p>
+<div class="quiz-choices">
+<button type="button" data-choice="a" aria-pressed="false"><span class="placeholder">[PLACEHOLDER — D1: mode one choice label]</span></button>
+<button type="button" data-choice="b" aria-pressed="false"><span class="placeholder">[PLACEHOLDER — D1: mode two choice label]</span></button>
+<button type="button" data-choice="c" aria-pressed="false"><span class="placeholder">[PLACEHOLDER — D1: mode three choice label]</span></button>
+<button type="button" data-choice="d" aria-pressed="false"><span class="placeholder">[PLACEHOLDER — D1: mode four choice label]</span></button>
+<button type="button" data-choice="e" aria-pressed="false"><span class="placeholder">[PLACEHOLDER — D1: mode five choice label]</span></button>
+<button type="button" data-choice="f" aria-pressed="false"><span class="placeholder">[PLACEHOLDER — D1: mode six choice label]</span></button>
 </div>
-<div data-result="b">
-<p><strong class="placeholder">[PLACEHOLDER — D1: persona two name]</strong></p>
-<p class="placeholder">[PLACEHOLDER — D1/D5: persona two result copy and defined next step]</p>
+<p class="quiz-status" role="status" aria-live="polite" aria-atomic="true"></p>
+<p class="placeholder" data-cap-message hidden>[PLACEHOLDER — D1/D5: cap message]</p>
+<div data-result="a" tabindex="-1" hidden>
+<p><strong data-slot="name" class="placeholder">[PLACEHOLDER — D1: mode one name]</strong></p>
+<p data-slot="body" class="placeholder">[PLACEHOLDER — D1: mode one descriptive copy]</p>
+<p data-slot="next" class="placeholder">[PLACEHOLDER — D5: mode one next step]</p>
 </div>
-<div data-result="c">
-<p><strong class="placeholder">[PLACEHOLDER — D1: persona three name]</strong></p>
-<p class="placeholder">[PLACEHOLDER — D1/D5: persona three result copy and defined next step]</p>
+<div data-result="b" tabindex="-1" hidden>
+<p><strong data-slot="name" class="placeholder">[PLACEHOLDER — D1: mode two name]</strong></p>
+<p data-slot="body" class="placeholder">[PLACEHOLDER — D1: mode two descriptive copy]</p>
+<p data-slot="next" class="placeholder">[PLACEHOLDER — D5: mode two next step]</p>
 </div>
-<noscript><p class="small">The three pathways above are being finalized. Begin with <a href="/glossary">the Lexicon</a>.</p></noscript>
+<div data-result="c" tabindex="-1" hidden>
+<p><strong data-slot="name" class="placeholder">[PLACEHOLDER — D1: mode three name]</strong></p>
+<p data-slot="body" class="placeholder">[PLACEHOLDER — D1: mode three descriptive copy]</p>
+<p data-slot="next" class="placeholder">[PLACEHOLDER — D5: mode three next step]</p>
+</div>
+<div data-result="d" tabindex="-1" hidden>
+<p><strong data-slot="name" class="placeholder">[PLACEHOLDER — D1: mode four name]</strong></p>
+<p data-slot="body" class="placeholder">[PLACEHOLDER — D1: mode four descriptive copy]</p>
+<p data-slot="next" class="placeholder">[PLACEHOLDER — D5: mode four next step]</p>
+</div>
+<div data-result="e" tabindex="-1" hidden>
+<p><strong data-slot="name" class="placeholder">[PLACEHOLDER — D1: mode five name]</strong></p>
+<p data-slot="body" class="placeholder">[PLACEHOLDER — D1: mode five descriptive copy]</p>
+<p data-slot="next" class="placeholder">[PLACEHOLDER — D5: mode five next step]</p>
+</div>
+<div data-result="f" tabindex="-1" hidden>
+<p><strong data-slot="name" class="placeholder">[PLACEHOLDER — D1: mode six name]</strong></p>
+<p data-slot="body" class="placeholder">[PLACEHOLDER — D1: mode six descriptive copy]</p>
+<p data-slot="next" class="placeholder">[PLACEHOLDER — D5: mode six next step]</p>
+</div>
+<noscript><p class="small">The six pathways above are being finalized. Begin with <a href="/glossary">the Lexicon</a>.</p></noscript>
 </div>
 -->
 <!-- [PLACEHOLDER — D5: "workshop door" slot. Whether a workshop door appears in v1 is undecided; nothing renders here until the founder decides.] -->
 <!-- PERSONA QUIZ DISABLED PENDING D1
 <script>
 (function(){
+  var MAX=3;
   var quiz=document.getElementById('persona-quiz');
+  var status=quiz.querySelector('.quiz-status');
+  var capMessage=quiz.querySelector('[data-cap-message]');
+  var buttons=quiz.querySelectorAll('button[data-choice]');
+  var chosen=[];
+
+  function panelFor(key){
+    return quiz.querySelector('[data-result="'+key+'"]');
+  }
+
+  /* The announced name is read from the panel, so the copy lives in one
+     place: fill in the D1 name slot and these announcements follow. */
+  function nameFor(key){
+    var panel=panelFor(key);
+    var slot=panel?panel.querySelector('[data-slot="name"]'):null;
+    return slot?slot.textContent.trim():key;
+  }
+
+  /* Clear, then set on a later tick. Writing the same string twice in a
+     row is not a DOM change, and several screen readers stay silent for
+     it. Hitting the cap repeatedly does exactly that. */
+  function announce(message){
+    if(!status)return;
+    status.textContent='';
+    window.setTimeout(function(){status.textContent=message;},100);
+  }
+
+  /* At the cap, unselected buttons are aria-disabled, never disabled:
+     the disabled attribute drops them out of the tab order and hides the
+     cap from anyone navigating by keyboard. They stay clickable so the
+     handler can announce the cap message. */
+  function syncCap(){
+    var full=chosen.length>=MAX;
+    for(var i=0;i<buttons.length;i++){
+      if(full&&buttons[i].getAttribute('aria-pressed')!=='true'){
+        buttons[i].setAttribute('aria-disabled','true');
+      }else{
+        buttons[i].removeAttribute('aria-disabled');
+      }
+    }
+  }
+
   quiz.addEventListener('click',function(e){
     var btn=e.target.closest('button[data-choice]');
     if(!btn)return;
-    var panels=quiz.querySelectorAll('[data-result]');
-    for(var i=0;i<panels.length;i++){
-      panels[i].style.display=(panels[i].getAttribute('data-result')===btn.getAttribute('data-choice'))?'block':'none';
+    var key=btn.getAttribute('data-choice');
+    var panel=panelFor(key);
+    if(!panel)return;
+
+    if(btn.getAttribute('aria-pressed')==='true'){
+      /* Rescue focus before hiding, or deselecting a panel the user has
+         tabbed into destroys the focused element and drops focus to body. */
+      if(panel.contains(document.activeElement))btn.focus();
+      chosen.splice(chosen.indexOf(key),1);
+      btn.setAttribute('aria-pressed','false');
+      panel.hidden=true;
+      announce(nameFor(key)+' deselected');
+    }else{
+      if(chosen.length>=MAX){
+        announce(capMessage?capMessage.textContent.trim():'');
+        return;
+      }
+      chosen.push(key);
+      btn.setAttribute('aria-pressed','true');
+      /* Shown in place. Panels are never reordered, moved or appended,
+         so display order is always document order and the order they
+         were chosen in cannot imply ranking. */
+      panel.hidden=false;
+      announce(nameFor(key)+' selected');
     }
+    syncCap();
   });
 })();
 </script>
