@@ -1,0 +1,22 @@
+# Emhergence
+
+> Emhergence is a living identity infrastructure — it turns what you already know into a decision, a decision into positioning, and positioning into leverage you can actually use.
+
+Founded by Josette Williams. Based in Surrey, British Columbia, Canada.
+
+## Core pages
+
+- [Emhergence](https://emhergence.com/): The hub. Organization record and canonical entry point.
+- [Glossary](https://emhergence.com/glossary): Twelve defined terms with dated definitions.
+- [About](https://emhergence.com/about): What Emhergence is and who it is built for.
+- [FAQ](https://emhergence.com/faq): Eight questions answered in the founder's own language.
+
+## Canonical definitions
+
+- [Living Identity OS](https://emhergence.com/glossary#living-identity-os): The canonical anchor for the term.
+- [Lexicon](https://emhergence.com/glossary#lexicon): The full defined-term set.
+
+## Related sites
+
+- [Josette Williams](https://josettewilliams.com/): Founder. Person record linked to the Organization.
+- [Living Identity OS](https://livingidentityos.com/): Dedicated page for the Living Identity OS.
