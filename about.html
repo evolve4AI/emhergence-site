@@ -47,6 +47,9 @@ blockquote{font-family:Georgia,serif;font-size:1.15rem;border-left:3px solid var
 .quiz [data-result]{margin-top:1rem;padding:1rem;border:1px dashed var(--rule);border-radius:6px}
 .quiz [data-result]:focus{outline:2px solid var(--accent);outline-offset:2px}
 .placeholder{color:var(--muted);font-style:italic}
+.quiz details{margin:.6rem 0 0;padding-top:.6rem;border-top:1px solid var(--rule)}
+.quiz summary{cursor:pointer;font-weight:600}.quiz summary::marker{color:var(--accent)}.quiz summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.quiz details p{margin:.4rem 0 0}
 footer{margin:4rem auto 0;padding-top:1.5rem;padding-bottom:2.5rem;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted)}
 </style>
 </head>
@@ -85,8 +88,8 @@ footer{margin:4rem auto 0;padding-top:1.5rem;padding-bottom:2.5rem;border-top:1p
   Everything marked [PLACEHOLDER] below is stub copy and must be
   replaced by the founder before this page is considered final.
   Quiz mechanics are anonymous and entirely client-side: no storage, no
-  cookies, no network requests, nothing recorded. The D5 next-step links
-  are ordinary navigation and sit outside that guarantee.
+  cookies, no network requests, nothing recorded. The D5 potentials open in
+  place and stay inside that guarantee.
 -->
 <!-- PERSONA QUIZ DISABLED PENDING D1
 <div class="quiz" id="persona-quiz">
@@ -106,37 +109,60 @@ footer{margin:4rem auto 0;padding-top:1.5rem;padding-bottom:2.5rem;border-top:1p
 <div data-result="a" tabindex="-1" hidden>
 <p><strong data-slot="name">Positioning</strong></p>
 <p data-slot="body">People keep reaching for familiar labels to explain work that does not fit neatly inside them. They understand pieces of what you do, but the description they repeat back makes you smaller than the work itself. It's a shortage of accurate language on their side, not yours. What you actually do is legible.</p>
-<p data-slot="next" class="placeholder">[PLACEHOLDER — D5: mode one next step]</p>
+<div data-slot="next">
+<details><summary>I don't have to wait for them to get it right.</summary><p>Being seen accurately can start with you. When you speak about your work first, they begin from your version instead of their guess.</p></details>
+<details><summary>What do I want them to say about me when I'm not there?</summary><p>You can write that sentence on purpose. Once it exists, the people who already believe in you have something to carry.</p></details>
+<details><summary>I can introduce who I am now, not who they met.</summary><p>People tend to keep the earliest picture they were given. Each time you lead with the present, the older picture has less to hold on to.</p></details>
+</div>
 </div>
 <div data-result="b" tabindex="-1" hidden>
 <p><strong data-slot="name">Converting</strong></p>
 <p data-slot="body">You know the most valuable part of your work is not fully represented in what you earn. The gap isn't in what you're worth. It's in what standard business accounting has ever been built to count. Your identity is your economic asset.</p>
-<p data-slot="next" class="placeholder">[PLACEHOLDER — D5: mode two next step]</p>
+<div data-slot="next">
+<details><summary>It can matter even when it's easy for me.</summary><p>Effort isn't the only way to measure what you give. What you do without strain may be the clearest sign of your mastery.</p></details>
+<details><summary>My own notes can hold what theirs leave out.</summary><p>A private record of what you make happen needs no one's approval. Over time, it shows a pattern no title or invoice ever captured.</p></details>
+<details><summary>What they really come to me for is how I think.</summary><p>Tasks can be handed to anyone, or anything. The way you weigh a decision stays with you, and it can sit at the centre of what you offer rather than underneath it.</p></details>
+</div>
 </div>
 <div data-result="c" tabindex="-1" hidden>
 <p><strong data-slot="name">Holding</strong></p>
 <p data-slot="body">You've been holding multiple identities, instincts, roles, and ways of knowing at once, then trying to make them fit inside a business model built for singularity. What looked like inconsistency was range. The parts aren't competing. They're one system, and the range is the thing no one else can reproduce.</p>
-<p data-slot="next" class="placeholder">[PLACEHOLDER — D5: mode three next step]</p>
+<div data-slot="next">
+<details><summary>Every part of me can come along.</summary><p>Nothing you've built has to be trimmed to fit someone else's advice. The parts that look unrelated may be doing their best work together.</p></details>
+<details><summary>I decide which of my worlds cross paths.</summary><p>Two areas of your life can meet on your own terms, one person or one project at a time. It may begin quietly, with no announcement at all.</p></details>
+<details><summary>I'm starting to see how it all connects.</summary><p>What looks scattered from the outside may have a shape you recognize from within. Once it's clear to you, explaining it to others can become much simpler.</p></details>
+</div>
 </div>
 <div data-result="d" tabindex="-1" hidden>
 <p><strong data-slot="name">Naming</strong></p>
 <p data-slot="body">You sense something in yourself before you have language for it, and without language, it stays difficult to place, explain, or act on. What you're reaching for isn't vague. It's precise, and it's yours, and it hasn't been given words that fit. The naming is what stops your decisions orbiting around who you were told to be.</p>
-<p data-slot="next" class="placeholder">[PLACEHOLDER — D5: mode four next step]</p>
+<div data-slot="next">
+<details><summary>The old words can go before the new ones arrive.</summary><p>A description you've outgrown can be set down with nothing ready to replace it. Leaving the space open for a while may be the most honest thing you do.</p></details>
+<details><summary>I can try saying it out loud before it's finished.</summary><p>A rough attempt still tells you something. Each time you say it, you can hear what stays and what drops off.</p></details>
+<details><summary>This sounds like me.</summary><p>When the way you speak about yourself matches what you already feel, your next choice can start from here instead of from memory.</p></details>
+</div>
 </div>
 <div data-result="e" tabindex="-1" hidden>
 <p><strong data-slot="name">Protecting</strong></p>
 <p data-slot="body">You already know which parts of yourself belong in the room, and which ones do not get access yet. That choice is discernment, and it is one you are already making well. What you hold back is not what you lack. It's what you've decided not to let anyone reduce.</p>
-<p data-slot="next" class="placeholder">[PLACEHOLDER — D5: mode five next step]</p>
+<div data-slot="next">
+<details><summary>I can show some of me, not all of me.</summary><p>Being seen and being fully known can be two different things. You can be generous in public and still keep your deepest work to yourself.</p></details>
+<details><summary>I set how far each idea travels.</summary><p>An idea can go out as a headline, be shared in depth with a few people, or remain entirely in your own hands. You can make that call fresh each time.</p></details>
+<details><summary>People know my work, and the heart of it is safe with me.</summary><p>Visibility and protection can point in the same direction. What goes out can build trust, while what's private loses nothing.</p></details>
+</div>
 </div>
 <div data-result="f" tabindex="-1" hidden>
 <p><strong data-slot="name">Discerning</strong></p>
 <p data-slot="body">You can name what is happening now, but not everything has revealed its weight, timing, or place yet. You're noticing which ideas keep returning, which commitments still fit, and which signals are beginning to separate from the noise. You are not undecided; you are in the act of deciding what deserves to move forward with you.</p>
-<p data-slot="next" class="placeholder">[PLACEHOLDER — D5: mode six next step]</p>
+<div data-slot="next">
+<details><summary>Not everything needs me at full strength.</summary><p>A project can rest for a season and still be there when you come back. Pausing something isn't the same as giving it up.</p></details>
+<details><summary>I can put more into one thing and watch what it does.</summary><p>Extra attention can bring out what an option is capable of. A month of focus may teach you more than a year of spreading yourself evenly.</p></details>
+<details><summary>My energy goes where things are growing.</summary><p>When your effort follows what's alive for you, other claims on your time can loosen on their own.</p></details>
+</div>
 </div>
 <noscript><p class="small">The six pathways above are being finalized. Begin with <a href="/glossary">the Lexicon</a>.</p></noscript>
 </div>
 -->
-<!-- [PLACEHOLDER — D5: "workshop door" slot. Whether a workshop door appears in v1 is undecided; nothing renders here until the founder decides.] -->
 <!-- PERSONA QUIZ DISABLED PENDING D1
 <script>
 (function(){
